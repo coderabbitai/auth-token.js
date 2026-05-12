@@ -9,6 +9,7 @@ name: Test
       - synchronize
 jobs:
   test_matrix:
+    if: ${{ github.event.pull_request == null || github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -37,4 +38,4 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
-    if: ${{ always() }}
+    if: ${{ (github.event.pull_request == null || github.event.pull_request.head.repo.full_name == github.repository) && (always()) }}

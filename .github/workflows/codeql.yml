@@ -10,6 +10,7 @@ on:
 
 jobs:
   CodeQL-Build:
+    if: ${{ github.event.pull_request == null || github.event.pull_request.head.repo.full_name == github.repository }}
 
     # CodeQL runs on ubuntu-latest and windows-latest
     runs-on: ubuntu-latest
